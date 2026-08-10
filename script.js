@@ -1,4 +1,10 @@
-let manhwaList = ["Solo Leveling", "Tower of God", "The Beginning After The End", "Windbreaker"];
+let manhwaList = [
+  { title: "Solo Leveling", cover: "https://placehold.co/120x160/30363D/FFFFFF?text=Solo+Leveling" },
+  { title: "Tower of God", cover: "https://placehold.co/120x160/30363D/FFFFFF?text=Tower+of+God" },
+  { title: "The Beginning After The End", cover: "https://placehold.co/120x160/30363D/FFFFFF?text=TBATE" },
+  { title: "Windbreaker", cover: "https://placehold.co/120x160/30363D/FFFFFF?text=Windbreaker" }
+];
+
 let currentChapter = 1;
 let currentTitle = "";
 
@@ -6,21 +12,23 @@ function buildHomepage(filteredList) {
   let listToShow = filteredList || manhwaList;
   let cardsHTML = "";
   for (let i = 0; i < listToShow.length; i++) {
-    cardsHTML += "<div class='manhwa-card'><div class='cover'>Cover</div><p>" + listToShow[i] + "</p><button onclick=\"readManhwa('" + listToShow[i] + "')\">Read Now</button></div>";
+    let item = listToShow[i];
+    cardsHTML += "<div class='manhwa-card'><img src='" + item.cover + "' class='cover'><p>" + item.title + "</p><button onclick=\"readManhwa('" + item.title + "')\">Read Now</button></div>";
   }
-  document.body.innerHTML = "<h1> Project Asta </h1><p>Read your favorite manhwa, anytime.</p>" +
+  document.body.innerHTML = "<h1>Project Asta</h1><p>Read your favorite manhwa, anytime.</p>" +
     "<input type='text' id='searchBox' placeholder='Search manhwa...' oninput='searchManhwa()'>" +
     "<div class='manhwa-grid' id='grid'>" + cardsHTML + "</div>";
 }
 
 function searchManhwa() {
   let query = document.getElementById("searchBox").value.toLowerCase();
-  let results = manhwaList.filter(function(title) {
-    return title.toLowerCase().includes(query);
+  let results = manhwaList.filter(function(item) {
+    return item.title.toLowerCase().includes(query);
   });
   let cardsHTML = "";
   for (let i = 0; i < results.length; i++) {
-    cardsHTML += "<div class='manhwa-card'><div class='cover'>Cover</div><p>" + results[i] + "</p><button onclick=\"readManhwa('" + results[i] + "')\">Read Now</button></div>";
+    let item = results[i];
+    cardsHTML += "<div class='manhwa-card'><img src='" + item.cover + "' class='cover'><p>" + item.title + "</p><button onclick=\"readManhwa('" + item.title + "')\">Read Now</button></div>";
   }
   document.getElementById("grid").innerHTML = cardsHTML;
 }
