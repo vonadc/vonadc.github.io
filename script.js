@@ -8,7 +8,7 @@ function buildHomepage(filteredList) {
   for (let i = 0; i < listToShow.length; i++) {
     cardsHTML += "<div class='manhwa-card'><div class='cover'>Cover</div><p>" + listToShow[i] + "</p><button onclick=\"readManhwa('" + listToShow[i] + "')\">Read Now</button></div>";
   }
-  document.body.innerHTML = "<h1>Von's Manhwa Hub</h1><p>Read your favorite manhwa, anytime.</p>" +
+  document.body.innerHTML = "<h1>Ptoject Asta</h1><p>Read your favorite manhwa, anytime.</p>" +
     "<input type='text' id='searchBox' placeholder='Search manhwa...' oninput='searchManhwa()'>" +
     "<div class='manhwa-grid' id='grid'>" + cardsHTML + "</div>";
 }
